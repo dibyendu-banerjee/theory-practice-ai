@@ -1,4 +1,4 @@
-# 🧠 The Theory & Practice of Artificial Intelligence
+# The Theory & Practice of Artificial Intelligence
 
 ![Book Cover](./9789368089469.jpg)
 
@@ -23,14 +23,8 @@ This repository contains all the **code snippets**, **notebooks**, and **project
 ---
 
 ## 🗂️ Repository Structure
-📁 code/
-│ ├── chapter1_intro_to_ai/
-│ ├── chapter2_ml_basics/
-│ ├── chapter3_deep_learning/
-│ ├── chapter4_nlp/
-│ ├── chapter5_generative_ai/
-│ ├── chapter6_agentic_ai/
-│ └── utils/
+<TBD>
+
 │
 📘 README.md
 📦 requirements.txt
