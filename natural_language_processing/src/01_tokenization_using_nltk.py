@@ -1,24 +1,32 @@
-"""
-Tokenization using NLTK
-This script demonstrates: Tokenization using NLTK
-"""
+# ================================================================
+# Chapter 11: Text Preprocessing
+# Use Case: Tokenizing Text into Words and Sentences using NLTK
+# ================================================================
 
-# Sample text
+import nltk
+from nltk.tokenize import word_tokenize, sent_tokenize
+
+# Download required NLTK resources (only needed once)
+nltk.download('punkt')
+
+# --------------------------------------------------
+# Step 1: Define Sample Text
+# --------------------------------------------------
 
 text = "My name is Dibyendu Banerjee. I am exploring Python."
 
-
-
-# Tokenize text into words
+# --------------------------------------------------
+# Step 2: Tokenize Text into Words
+# --------------------------------------------------
 
 word_tokens = word_tokenize(text)
+print("📝 Word Tokens:")
+print(word_tokens)
 
-print("Word Tokens:", word_tokens)
-
-
-
-# Tokenize text into sentences
+# --------------------------------------------------
+# Step 3: Tokenize Text into Sentences
+# --------------------------------------------------
 
 sent_tokens = sent_tokenize(text)
-
-print("Sentence Tokens
+print("\n📚 Sentence Tokens:")
+print(sent_tokens)

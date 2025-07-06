@@ -1,64 +1,75 @@
-"""##Chapter 3: Example of Python Code to implement Polynomial Regression Predictions"""
-
-from sklearn.model_selection import train_test_split
+# ================================================================
+# Chapter 3: Underfitting vs. Overfitting in Regression Models
+# Description: Demonstrates underfitting using linear regression
+# and overfitting using high-degree polynomial regression.
+# ================================================================
 
 import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.linear_model import LinearRegression
 from sklearn.preprocessing import PolynomialFeatures
 from sklearn.metrics import mean_squared_error
-from sklearn.model_selection import train_test_split  # Fix: missing import
 
-# Generate synthetic data
-np.random.seed(0)
-X = 2 * np.random.rand(100, 1)
-y = 4 + 3 * X + np.random.randn(100, 1) + 5 * (X ** 2)  # Quadratic relationship
+# --------------------------------------------------
+# Step 1: Generate Synthetic Data with Noise
+# --------------------------------------------------
 
-# Split data
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=0)
+np.random.seed(42)  # For reproducibility
 
-# Train linear regression model
-model = LinearRegression()
-model.fit(X_train, y_train)
-y_pred_train = model.predict(X_train)
-y_pred_test = model.predict(X_test)
+# Generate 30 sorted random values between 0 and 1
+X = np.sort(np.random.rand(30))
 
-# Calculate MSE
-mse_train = mean_squared_error(y_train, y_pred_train)
-mse_test = mean_squared_error(y_test, y_pred_test)
+# Create a linear relationship with added Gaussian noise
+y = 2 * X + 1 + np.random.normal(0, 0.1, len(X))
 
-print(f"MSE on training data: {mse_train:.2f}")
-print(f"MSE on test data: {mse_test:.2f}")
+# Reshape X to 2D array for model compatibility
+X = X.reshape(-1, 1)
 
-# Plot data and predictions
-plt.scatter(X, y, color='blue', label='Data')
-plt.plot(X, model.predict(X), color='red', label='Linear Regression Line')
-plt.xlabel('X')
-plt.ylabel('y')
-plt.legend()
-plt.show()
+# --------------------------------------------------
+# Step 2: Fit a Linear Regression Model (Underfitting)
+# --------------------------------------------------
 
-# Polynomial regression
-poly = PolynomialFeatures(degree=2)
-X_poly_train = poly.fit_transform(X_train)
-X_poly_test = poly.transform(X_test)
+linear_model = LinearRegression()
+linear_model.fit(X, y)
+y_linear_pred = linear_model.predict(X)
 
-model_poly = LinearRegression()
-model_poly.fit(X_poly_train, y_train)
-y_pred_train_poly = model_poly.predict(X_poly_train)
-y_pred_test_poly = model_poly.predict(X_poly_test)
+# --------------------------------------------------
+# Step 3: Fit a Polynomial Regression Model (Overfitting)
+# --------------------------------------------------
 
-# Calculate MSE for polynomial regression
-mse_train_poly = mean_squared_error(y_train, y_pred_train_poly)
-mse_test_poly = mean_squared_error(y_test, y_pred_test_poly)
+# Transform features to polynomial terms up to degree 15
+polynomial_features = PolynomialFeatures(degree=15)
+X_poly = polynomial_features.fit_transform(X)
 
-print(f"MSE on training data (Polynomial Regression): {mse_train_poly:.2f}")
-print(f"MSE on test data (Polynomial Regression): {mse_test_poly:.2f}")
+# Fit linear regression on polynomial-transformed features
+poly_model = LinearRegression()
+poly_model.fit(X_poly, y)
+y_poly_pred = poly_model.predict(X_poly)
 
-# Plot polynomial regression predictions
-plt.scatter(X, y, color='blue', label='Data')
-plt.plot(X, model_poly.predict(poly.transform(X)), color='green', label='Polynomial Regression Line')
-plt.xlabel('X')
-plt.ylabel('y')
-plt.legend()
+# --------------------------------------------------
+# Step 4: Visualize Underfitting vs. Overfitting
+# --------------------------------------------------
+
+fig, axes = plt.subplots(1, 2, figsize=(16, 6))
+
+# 📉 Underfitting: Linear Regression
+axes[0].scatter(X, y, color='black', label='Data', s=50)
+axes[0].plot(X, y_linear_pred, color='blue', linewidth=2, label='Linear Fit (Underfitting)')
+axes[0].set_title('Underfitting: Linear Regression', fontsize=14)
+axes[0].set_xlabel('X', fontsize=12)
+axes[0].set_ylabel('y', fontsize=12)
+axes[0].grid(True, linestyle='--', color='gray', alpha=0.6)
+axes[0].legend()
+
+# 📈 Overfitting: Polynomial Regression (Degree 15)
+axes[1].scatter(X, y, color='black', label='Data', s=50)
+axes[1].plot(X, y_poly_pred, color='red', linewidth=2, label='Polynomial Fit (Overfitting)')
+axes[1].set_title('Overfitting: Polynomial Regression', fontsize=14)
+axes[1].set_xlabel('X', fontsize=12)
+axes[1].set_ylabel('y', fontsize=12)
+axes[1].grid(True, linestyle='--', color='gray', alpha=0.6)
+axes[1].legend()
+
+# Adjust layout and display
+plt.tight_layout()
 plt.show()

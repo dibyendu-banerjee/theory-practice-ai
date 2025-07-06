@@ -1,1 +1,0 @@
-# Chapter 18: Code Example of Stopword Removal Techniques

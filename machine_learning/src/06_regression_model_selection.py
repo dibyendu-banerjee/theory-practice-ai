@@ -1,152 +1,106 @@
-"""# **Chapter 4: Supervised Learning: Logistic Regression**
-
-# Chapter 4 - Use Case: Predicting Customer Churn with Logistic Regression
-"""
+# ================================================================
+# Chapter 4: Predicting Customer Churn with Logistic Regression
+# Description: Demonstrates a full pipeline for churn prediction
+# using synthetic data, preprocessing, and logistic regression.
+# ================================================================
 
 import pandas as pd
-
 import numpy as np
-
 from sklearn.model_selection import train_test_split
-
 from sklearn.preprocessing import StandardScaler, OneHotEncoder
-
 from sklearn.compose import ColumnTransformer
-
 from sklearn.pipeline import Pipeline
-
 from sklearn.linear_model import LogisticRegression
-
 from sklearn.metrics import accuracy_score, classification_report
 
+# --------------------------------------------------
+# Step 1: Generate Synthetic Customer Churn Dataset
+# --------------------------------------------------
 
-
-# Generate synthetic dataset
-
-np.random.seed(42)
-
-
-
-# Create a sample dataset
-
+np.random.seed(42)  # For reproducibility
 n_samples = 500
 
-MonthlySpend = np.random.uniform(20, 150, size=n_samples)  # Random monthly spend
-
-ContractType = np.random.choice(['Month-to-Month', 'One-Year', 'Two-Year'], size=n_samples)  # Random contract type
-
-CustomerTenure = np.random.randint(1, 73, size=n_samples)  # Customer tenure in months (1-72 months)
-
-Churn = np.random.choice([0, 1], size=n_samples)  # Random churn (0 = No, 1 = Yes)
-
-
+# Simulate customer features
+MonthlySpend = np.random.uniform(20, 150, size=n_samples)  # Monthly bill
+ContractType = np.random.choice(['Month-to-Month', 'One-Year', 'Two-Year'], size=n_samples)
+CustomerTenure = np.random.randint(1, 73, size=n_samples)  # Tenure in months
+Churn = np.random.choice([0, 1], size=n_samples)  # Binary churn label
 
 # Create DataFrame
-
 data = pd.DataFrame({
-
     'MonthlySpend': MonthlySpend,
-
     'ContractType': ContractType,
-
     'CustomerTenure': CustomerTenure,
-
     'Churn': Churn
-
 })
 
-
-
-# Display the first few rows of the dataset
-
+# Preview the dataset
+print("📋 Sample of the dataset:")
 print(data.head())
 
+# --------------------------------------------------
+# Step 2: Validate and Clean Target Variable
+# --------------------------------------------------
 
-
-# Check for missing values in the 'Churn' column
-
+# Ensure 'Churn' column exists
 if 'Churn' not in data.columns:
-
     raise ValueError("The target variable 'Churn' is missing from the dataset.")
 
-
-
-# Check for missing values
-
+# Handle missing values in target (if any)
 if data['Churn'].isnull().any():
-
-    print("Missing values found in the 'Churn' column. Filling with mode.")
-
+    print("⚠️ Missing values found in 'Churn'. Filling with mode.")
     data['Churn'].fillna(data['Churn'].mode()[0], inplace=True)
 
-
-
-# Features and target variable
+# --------------------------------------------------
+# Step 3: Define Features and Target
+# --------------------------------------------------
 
 X = data[['MonthlySpend', 'ContractType', 'CustomerTenure']]
-
 y = data['Churn']
 
+# --------------------------------------------------
+# Step 4: Build Preprocessing Pipeline
+# --------------------------------------------------
 
-
-# Preprocessing
-
-preprocessor = ColumnTransformer(
-
-    transformers=[
-
-        ('num', StandardScaler(), ['MonthlySpend', 'CustomerTenure']),
-
-        ('cat', OneHotEncoder(), ['ContractType'])
-
-    ]
-
-)
-
-
-
-# Create pipeline
-
-pipeline = Pipeline(steps=[
-
-    ('preprocessor', preprocessor),
-
-    ('classifier', LogisticRegression())
-
+# Scale numerical features and one-hot encode categorical ones
+preprocessor = ColumnTransformer(transformers=[
+    ('num', StandardScaler(), ['MonthlySpend', 'CustomerTenure']),
+    ('cat', OneHotEncoder(), ['ContractType'])
 ])
 
+# Combine preprocessing and model into a pipeline
+pipeline = Pipeline(steps=[
+    ('preprocessor', preprocessor),
+    ('classifier', LogisticRegression())
+])
 
+# --------------------------------------------------
+# Step 5: Train-Test Split
+# --------------------------------------------------
 
-# Split the data
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.3, random_state=42
+)
 
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
-
-
-
-# Train the model
+# --------------------------------------------------
+# Step 6: Train the Logistic Regression Model
+# --------------------------------------------------
 
 pipeline.fit(X_train, y_train)
 
-
-
-# Make predictions
+# --------------------------------------------------
+# Step 7: Make Predictions and Evaluate
+# --------------------------------------------------
 
 y_pred = pipeline.predict(X_test)
 
-
-
-# Evaluate the model
-
 accuracy = accuracy_score(y_test, y_pred)
-
 report = classification_report(y_test, y_pred)
 
+# --------------------------------------------------
+# Step 8: Display Evaluation Results
+# --------------------------------------------------
 
-
-# Print results
-
-print(f"Accuracy: {accuracy:.2f}")
-
-print("Classification Report:")
-
+print(f"\n✅ Model Accuracy: {accuracy:.2f}")
+print("\n📊 Classification Report:")
 print(report)

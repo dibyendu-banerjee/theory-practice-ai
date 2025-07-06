@@ -71,19 +71,22 @@ This repository contains the companion code to the book *The Theory and Practice
 - `natural_language_processing/` – Code for Unit 3: NLP, Transformers, embeddings  
 - `generative_ai/` – Code for Unit 4: GenAI, LLMs, Agents
 
-Each folder has its own `requirements.txt`. To install dependencies, run:
+---
 
-Make sure you have Python 3.8+ installed.  
-To install the dependencies:
+## 🛠️ Installation Instructions
 
+Each folder has its own `requirements.txt`. To install dependencies, follow these steps:
 
-pip install -r <folder>/requirements.txt
+### ✅ Prerequisites
 
+- Make sure you have **Python 3.8+** installed.
 
-pip install -r requirements.txt
+### 📦 Install Dependencies
 
+Clone the repository and install the root-level dependencies:
+
+```bash
 git clone https://github.com/yourusername/theory-practice-ai.git
 cd theory-practice-ai
 pip install -r requirements.txt
-
 
