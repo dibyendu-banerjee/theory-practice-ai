@@ -73,16 +73,11 @@ This repository contains the companion code to the book *The Theory and Practice
 
 Each folder has its own `requirements.txt`. To install dependencies, run:
 
-```bash
-pip install -r <folder>/requirements.txt
-
----
-
-## 🔧 Requirements
-
-
 Make sure you have Python 3.8+ installed.  
 To install the dependencies:
+
+```bash
+pip install -r <folder>/requirements.txt
 
 ```bash
 pip install -r requirements.txt
