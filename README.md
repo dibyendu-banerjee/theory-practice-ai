@@ -78,7 +78,8 @@ pip install -r <folder>/requirements.txt
 
 ---
 
-## 🔧 <span style="color:#007acc;">Requirements</span>
+## 🔧 Requirements
+
 
 Make sure you have Python 3.8+ installed.  
 To install the dependencies:
