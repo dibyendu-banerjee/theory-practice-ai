@@ -1,0 +1,9 @@
+transformers
+torch
+openai
+google-cloud-aiplatform
+Pillow
+langchain
+requests
+pandas
+matplotlib

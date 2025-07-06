@@ -68,7 +68,7 @@ This repository contains the companion code to the book *The Theory and Practice
 
 - `machine_learning/` – Code for Unit 1: ML concepts and use cases  
 - `deep_learning/` – Code for Unit 2: DL architectures, CNN, RNN  
-- `nlp/` – Code for Unit 3: NLP, Transformers, embeddings  
+- `natural_language_processing/` – Code for Unit 3: NLP, Transformers, embeddings  
 - `generative_ai/` – Code for Unit 4: GenAI, LLMs, Agents
 
 Each folder has its own `requirements.txt`. To install dependencies, run:
