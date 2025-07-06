@@ -34,7 +34,7 @@ This book serves as a structured and in-depth resource for engineering students,
 **Dibyendu Banerjee**, **Sourav Kairi**, **Shatabdi Mondal**
 
 ---
-## ©️ <span style="color:#007acc;">Copyright Notice</span>
+### ©️ <span style="color:#007acc;">Copyright Notice</span>
 
 © 2025 **Dibyendu Banerjee**, **Sourav Kairi**, **Shatabdi Mondal**  
 All rights reserved.
