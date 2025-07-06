@@ -1,7 +1,9 @@
 <h1 align="center" style="font-family:Arial; color:#1a1a1a;">
   The Theory & Practice of Artificial Intelligence
 </h1>
-
+<h6 align="center" style="font-family:Arial; color:#1a1a1a;">
+  A Handbook for Beginners to Experts in Machine Learning, Deep Learning, NLP, Generative Al and Agentic Al Using Python
+</h6>
 <p align="center">
   <img src="./9789368089469.jpg" alt="Book Cover" width="300"/>
 </p>
