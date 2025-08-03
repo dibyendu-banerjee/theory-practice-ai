@@ -20,6 +20,42 @@
 This book serves as a structured and in-depth resource for engineering students, professionals, and researchers seeking to build expertise in Artificial Intelligence. Starting with core concepts in mathematics and statistics, the book gradually advances through Machine Learning (ML), Deep Learning (DL), Natural Language Processing (NLP), and Generative AI, ultimately leading to an in-depth exploration of Agentic AI and its potential impact on the future.
 
 ---
+Table of Content
+
+ UNIT I (Machine Learning)
+ 1. Machine Learning Overview and Basics 
+ 2. Data Pre-processing and Feature Engineering 
+ 3. Supervised Learning: Linear Regression 
+ 4. Supervised Learning: Logistic Regression 
+ 5. Decision Tree 
+ 6. Support Vector Machines 
+ 7. Ensemble Methods and Random Forest (RF) 
+ 8. Unsupervised Learning Algorithms 
+ 9. Model Evaluation and Tuning 
+ UNIT II (Deep Learning)
+ 11.	Artificial	Neural	Networks 
+ 12.	Recurrent	Neural	Networks	(RNNs) 
+ 13.	Computer	Vision	with	Convolutional	Neural	Network 
+ 14. Generative Models 
+ 15. Deep Reinforcement Learning 
+ 16. Model Tuning and Optimization in Deep Learning 
+ UNIT III (Natural Language Processing)
+ 17.	Overview	of	Natural	Language	Processing 
+ 18.	Text	Preprocessing:	The	Foundation	of	NLP 
+ 19. Feature Extraction and Representation 
+ 20.	Text	Classification 
+ 21.	Named	Entity	Recognition(NER) 
+ 22. Text Summarization 
+ 23. Topic Modeling 
+ 24.	Transformers	and	Advanced	NLP	Techniques 
+ UNIT IV (Generative AI)
+ 25. Introduction to Generative AI 
+ 26. Large Language Models (LLMs) 
+ 27. Prompt Engineering 
+ 28. Building LLM Apps with LangChain 
+ 29. Multi-Modal Language Models 
+ 30. Agentic AI 
+--
 
 
 ### ✨ <span style="color:#007acc;">Key Features</span>
